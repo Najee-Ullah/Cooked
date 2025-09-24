@@ -3,17 +3,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CuttingCounter : BaseCounter
+public class CuttingCounter : BaseCounter,IHasProgress
 {
     [SerializeField] KitchenObjectSO slicedTomato;
     [SerializeField] CuttingKitchenObjectSO[] cuttingKitchenObjectSOs;
 
     public event EventHandler OnCut;
-    public event EventHandler<OnCutProgressEventArgs> CutProgressMade;
-    public class OnCutProgressEventArgs : EventArgs
-    {
-        public float cutProgress;
-    }
+    public event EventHandler<IHasProgress.OnProgressEventArgs> OnProgressMade;
+
 
     int cuttingProgress = 0;
 
@@ -47,7 +44,7 @@ public class CuttingCounter : BaseCounter
             if (target != null)
             {
                 cuttingProgress++;
-                CutProgressMade?.Invoke(this, new OnCutProgressEventArgs { cutProgress = (float)cuttingProgress / target.numberOfCuts });
+                OnProgressMade?.Invoke(this, new IHasProgress.OnProgressEventArgs { currentProgress = (float)cuttingProgress / target.numberOfCuts });
                 if (cuttingProgress >= target.numberOfCuts)
                 {
 

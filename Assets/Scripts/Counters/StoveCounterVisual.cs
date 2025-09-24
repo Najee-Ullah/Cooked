@@ -8,6 +8,7 @@ public class StoveCounterVisual : MonoBehaviour
 
     [SerializeField] StoveCounter stoveCounter;
 
+
     private void Start()
     {
         stoveCounter.OnStoveUse +=StoveCounter_OnSwitch;

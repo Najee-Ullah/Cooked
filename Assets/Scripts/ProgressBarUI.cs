@@ -1,23 +1,30 @@
-using System.Collections;
-using System.Collections.Generic;
+
 using UnityEngine;
 using UnityEngine.UI;
 
 public class ProgressBarUI : MonoBehaviour
 {
     [SerializeField] private Image progressBar;
-    [SerializeField] private CuttingCounter cuttingCounter;
+    [SerializeField] private GameObject targetObject;
+    private IHasProgress progressObject;
 
+    private void Awake()
+    {
+        progressObject = targetObject.GetComponent<IHasProgress>();
+    }
     private void Start()
     {
-        cuttingCounter.CutProgressMade += CuttingCounter_CutProgressMade;
-        Hide();
+        if (progressObject != null)
+        {
+            progressObject.OnProgressMade += ProgressObject_OnProgressMade;
+            Hide();
+        }
     }
 
-    private void CuttingCounter_CutProgressMade(object sender, CuttingCounter.OnCutProgressEventArgs e)
+    private void ProgressObject_OnProgressMade(object sender, IHasProgress.OnProgressEventArgs e)
     {
-        progressBar.fillAmount = e.cutProgress;
-        if(progressBar.fillAmount >= 1 || progressBar.fillAmount <0.1)
+        progressBar.fillAmount = e.currentProgress;
+        if (progressBar.fillAmount >= 1 || progressBar.fillAmount < 0.1)
         {
             Hide();
         }

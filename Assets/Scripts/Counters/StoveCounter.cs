@@ -1,11 +1,7 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using Unity.PlasticSCM.Editor.WebApi;
 using UnityEngine;
-using static UnityEngine.GraphicsBuffer;
 
-public class StoveCounter : BaseCounter
+public class StoveCounter : BaseCounter,IHasProgress
 {
 
     [SerializeField] FryingKitchenObjectSO[] fryingKitchenObjectSOs;
@@ -16,7 +12,9 @@ public class StoveCounter : BaseCounter
     public class OnStoveUseEventArgs : EventArgs
     {
         public State currentState;
+
     }
+    public event EventHandler<IHasProgress.OnProgressEventArgs> OnProgressMade;
 
     public enum State {
         Idle,
@@ -46,6 +44,7 @@ public class StoveCounter : BaseCounter
                 break;
             case State.Frying:
                 fryingTImer += Time.deltaTime;
+                OnProgressMade?.Invoke(this, new IHasProgress.OnProgressEventArgs { currentProgress = (float)fryingTImer / fryingKitchenObjectSO.fryingTimer});
                 if (fryingTImer > fryingKitchenObjectSO.fryingTimer)
                 {
                     GetKitchenObject().DestroySelf();
@@ -59,7 +58,8 @@ public class StoveCounter : BaseCounter
                 break;
             case State.Fried:
                 burnTimer += Time.deltaTime;
-                if(burnTimer > burningKitchenObjectSO.burningTimer)
+                OnProgressMade?.Invoke(this, new IHasProgress.OnProgressEventArgs { currentProgress = (float)burnTimer / burningKitchenObjectSO.burningTimer});
+                if (burnTimer > burningKitchenObjectSO.burningTimer)
                 {
                     GetKitchenObject().DestroySelf();
                     ClearKitchenObject();
