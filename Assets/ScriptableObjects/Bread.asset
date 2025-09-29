@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Bread
   m_EditorClassIdentifier: 
   prefab: {fileID: 6289304277614191034, guid: 9ae749693c2ee3a4e8bcdc64a0955764, type: 3}
-  sprite: {fileID: 0}
+  sprite: {fileID: 21300000, guid: 77b28124b8bda494381c80bd5aa42c22, type: 3}
   objectName: Bread

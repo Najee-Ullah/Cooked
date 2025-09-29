@@ -45,7 +45,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f47a7e2edc0d0d24db3ebf35c52833ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  kitchenObjectSO: {fileID: 11400000, guid: ea2edadadffa30747bab51226196e638, type: 2}
+  kitchenObjectSO: {fileID: 11400000, guid: 4ec36d7d6d893a341bf8fdd321c10c51, type: 2}
 --- !u!1001 &2983706470701788422
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -108,6 +108,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: CabbageSliced_Visual
+      objectReference: {fileID: 0}
+    - target: {fileID: 3812876574508226177, guid: 44b7e90f95929c04c8394768d8bd1d14,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
