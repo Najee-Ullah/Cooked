@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0292be2d2897f6149b91e66f93ae61e1, type: 3}
+  m_Name: MightyBurger
+  m_EditorClassIdentifier: 
+  kitchenObjectSOs:
+  - {fileID: 11400000, guid: bc268328574aa944dbee9a2c3e7ba046, type: 2}
+  - {fileID: 11400000, guid: 625ad035570d2ec4997a41877b98e68d, type: 2}
+  - {fileID: 11400000, guid: 4ec36d7d6d893a341bf8fdd321c10c51, type: 2}
+  - {fileID: 11400000, guid: ea2edadadffa30747bab51226196e638, type: 2}
+  RecipeName: Mighty Burger
