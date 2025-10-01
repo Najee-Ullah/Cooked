@@ -178,8 +178,8 @@ GameObject:
   - component: {fileID: 8463523188508376393}
   - component: {fileID: 2085798758724821665}
   - component: {fileID: 5789179996412386110}
-  - component: {fileID: 5187410019324508377}
   - component: {fileID: 6375567762180558275}
+  - component: {fileID: 8245127933641528863}
   m_Layer: 3
   m_Name: ProgressCanvas
   m_TagString: Untagged
@@ -253,7 +253,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 1
+  m_PresetInfoIsWorld: 0
 --- !u!114 &5789179996412386110
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -271,19 +271,6 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
---- !u!114 &5187410019324508377
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7969193320015230494}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d5dd6a8cf969b584ea603c56e7328b10, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  progressBar: {fileID: 6888159560653259965}
 --- !u!114 &6375567762180558275
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -297,3 +284,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Mode: 2
+--- !u!114 &8245127933641528863
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7969193320015230494}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c7ebb78c4c5672a4f97ef1321e994154, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  progressBar: {fileID: 6888159560653259965}
+  targetObject: {fileID: 0}

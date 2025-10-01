@@ -38,14 +38,11 @@ public class DeliveryManager : MonoBehaviour
             currentTime = RecipeSpawnTimer;
             if (currentOrderList.Count < maxOrders)
             {
-                currentOrderList.Add(recipeListSO.recipeListSOs[UnityEngine.Random.Range(0, recipeListSO.recipeListSOs.Length - 1)]);
+                currentOrderList.Add(recipeListSO.recipeListSOs[UnityEngine.Random.Range(0, recipeListSO.recipeListSOs.Length)]);
                 OrderAdded?.Invoke(this, EventArgs.Empty);
             }
         }
-        foreach(RecipeSO recipeSO in currentOrderList)
-        {
-            Debug.Log(recipeSO.name);
-        }
+       
     }
     public List<RecipeSO> GetCurrentOrderList()
     {

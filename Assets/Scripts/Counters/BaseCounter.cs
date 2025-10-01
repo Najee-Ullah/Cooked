@@ -1,9 +1,13 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class BaseCounter : MonoBehaviour, IKitchenObjectParent
 {
+
+    public static event EventHandler onDropObject;
+    public static event EventHandler onPickObject;
 
     [SerializeField] private Transform kitchenObjectLocation;
     private KitchenObject kitchenObject = null;
@@ -15,7 +19,6 @@ public class BaseCounter : MonoBehaviour, IKitchenObjectParent
     {
         
     }
-
     public Transform GetKitchenObjectTransform()
     {
         return kitchenObjectLocation;
@@ -23,6 +26,7 @@ public class BaseCounter : MonoBehaviour, IKitchenObjectParent
     public void ClearKitchenObject()
     {
         this.kitchenObject = null;
+        onPickObject?.Invoke(this, EventArgs.Empty);
     }
     public KitchenObject GetKitchenObject()
     {
@@ -31,6 +35,7 @@ public class BaseCounter : MonoBehaviour, IKitchenObjectParent
     public void SetKitchenObject(KitchenObject kitchenObject)
     {
         this.kitchenObject = kitchenObject;
+        onDropObject?.Invoke(this, EventArgs.Empty);
     }
     public bool HasKitchenObject()
     {

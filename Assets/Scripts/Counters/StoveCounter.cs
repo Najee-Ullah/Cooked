@@ -8,7 +8,7 @@ public class StoveCounter : BaseCounter,IHasProgress
     [SerializeField] BurningKitchenObjectSO[] burningKitchenObjectSOs;
 
 
-    public EventHandler<OnStoveUseEventArgs> OnStoveUse;
+    public event EventHandler<OnStoveUseEventArgs> OnStoveUse;
     public class OnStoveUseEventArgs : EventArgs
     {
         public State currentState;
@@ -52,6 +52,7 @@ public class StoveCounter : BaseCounter,IHasProgress
                     KitchenObject.CreateKitchenObject(fryingKitchenObjectSO.Output, this);
                     burnTimer = 0;
                     state = State.Fried;
+                    OnStoveUse?.Invoke(this, new OnStoveUseEventArgs { currentState = state });
                     burningKitchenObjectSO = GetBurningTargetKitchenObjectSO(fryingKitchenObjectSO.Output);
 
                 }
@@ -65,6 +66,7 @@ public class StoveCounter : BaseCounter,IHasProgress
                     ClearKitchenObject();
                     KitchenObject.CreateKitchenObject(burningKitchenObjectSO.Output, this);
                     state = State.Burned;
+                    OnStoveUse?.Invoke(this, new OnStoveUseEventArgs { currentState = state });
                 }
                 break;
             case State.Burned:

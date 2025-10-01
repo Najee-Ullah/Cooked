@@ -62,9 +62,14 @@ public class Player : MonoBehaviour,IKitchenObjectParent
 
     private void Update()
     {
-        HandleMovement();
 
-        HandleInteractions();
+        if (KitchenGameManager.Instance.IsGamePlaying())
+        {
+            HandleMovement();
+
+            HandleInteractions();
+
+        }
     }
 
     private void HandleInteractions()

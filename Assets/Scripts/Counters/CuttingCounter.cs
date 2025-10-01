@@ -8,6 +8,8 @@ public class CuttingCounter : BaseCounter,IHasProgress
     [SerializeField] KitchenObjectSO slicedTomato;
     [SerializeField] CuttingKitchenObjectSO[] cuttingKitchenObjectSOs;
 
+    public static event EventHandler OnCutAll;
+
     public event EventHandler OnCut;
     public event EventHandler<IHasProgress.OnProgressEventArgs> OnProgressMade;
 
@@ -64,6 +66,7 @@ public class CuttingCounter : BaseCounter,IHasProgress
                 else
                 {
                     OnCut?.Invoke(this, EventArgs.Empty);
+                    OnCutAll?.Invoke(this, EventArgs.Empty);
                 }
             }
         }
