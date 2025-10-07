@@ -12,6 +12,12 @@ public class BaseCounter : MonoBehaviour, IKitchenObjectParent
     [SerializeField] private Transform kitchenObjectLocation;
     private KitchenObject kitchenObject = null;
 
+    public static void ResetStaticData()
+    {
+        onDropObject = null;
+        onPickObject = null;
+    }
+
     public virtual void Interact(Player player) {
         Debug.LogError("Base Counter : Interact");
     }

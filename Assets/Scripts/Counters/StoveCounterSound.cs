@@ -15,7 +15,6 @@ public class StoveCounterSound : MonoBehaviour
 
     private void StoveCounter_OnStoveUse(object sender, StoveCounter.OnStoveUseEventArgs e)
     {
-        Debug.Log(e.currentState.ToString());
         bool playSound;
         playSound = (e.currentState == StoveCounter.State.Fried || e.currentState == StoveCounter.State.Frying);
         if (playSound)

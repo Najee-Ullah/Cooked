@@ -8,6 +8,11 @@ public class TrashCounter : BaseCounter
 {
     public static event EventHandler onDump;
 
+    public new static void ResetStaticData()
+    {
+        onDump = null;
+    }
+
     public override void Interact(Player player)
     {
         if (player.HasKitchenObject())

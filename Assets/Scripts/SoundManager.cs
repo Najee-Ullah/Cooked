@@ -4,15 +4,32 @@ using UnityEngine;
 public class SoundManager : MonoBehaviour
 {
     [SerializeField] SFXRefsSO SFXRefsSO;
+    public static SoundManager Instance;
+
+    private float volumeMultiplier = .1f;
+    private const string VOLUME = "volume";
+
+    private void Awake()
+    {
+        if(PlayerPrefs.HasKey(VOLUME)) 
+          volumeMultiplier = PlayerPrefs.GetFloat(VOLUME);
+    }
 
     private void Start()
     {
+        if (Instance != null)
+        {
+            Destroy(Instance);
+        }
+        Instance = this;
+
         DeliveryCounter.Instance.OrderSuccess += DeliveryCounter_OrderSuccess;
         DeliveryCounter.Instance.OrderFail += DeliveryCounter_OrderFail;
         CuttingCounter.OnCutAll += CuttingCounter_OnCutAll;
         TrashCounter.onDump += TrashCounter_onDump;
         BaseCounter.onDropObject += BaseCounter_onDropObject;
         BaseCounter.onPickObject += BaseCounter_onPickObject;
+
     }
 
     private void BaseCounter_onPickObject(object sender, System.EventArgs e)
@@ -57,6 +74,23 @@ public class SoundManager : MonoBehaviour
     }
     private void PlaySound(AudioClip clip,Vector3 position,float volume = 1f)
     {
-        AudioSource.PlayClipAtPoint(clip, position, volume);
+        AudioSource.PlayClipAtPoint(clip, position, volume * volumeMultiplier);
+    }
+    public void AdjustVolume()
+    {
+        if(volumeMultiplier >= 1f)
+        {
+            volumeMultiplier = 0f;
+        }
+        else
+        {
+            volumeMultiplier += .1f;
+        }
+        PlayerPrefs.SetFloat(VOLUME, volumeMultiplier);
+        PlayerPrefs.Save();
+    }
+    public int GetVolume()
+    {
+        return (int)(volumeMultiplier * 10);
     }
 }
