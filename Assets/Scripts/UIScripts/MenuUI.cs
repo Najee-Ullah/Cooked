@@ -13,6 +13,8 @@ public class MenuUI : MonoBehaviour
     private void Awake()
     {
         StartButton.onClick.AddListener(() => { Loader.LoadScene("Main"); });
-        StartButton.onClick.AddListener(() => { Application.Quit(); });
+        QuitButton.onClick.AddListener(() => { Application.Quit(); });
+        StartButton.Select();
+
     }
 }
