@@ -22,12 +22,19 @@ public class StoveCounter : BaseCounter,IHasProgress
         Fried,
         Burned
     }
-    float fryingTImer = 0f, burnTimer = 0f;
+    float fryingTimer = 0f, burnTimer = 0f;
 
     private State state = State.Idle;
 
     FryingKitchenObjectSO fryingKitchenObjectSO;
     BurningKitchenObjectSO burningKitchenObjectSO;
+
+    public event EventHandler<OnBurningEventArgs> OnBurning;
+    public class OnBurningEventArgs {
+        public float burnTimer;
+        public float kitchenObjectBurnTimer;
+    }
+
 
     private void Update()
     {
@@ -38,14 +45,14 @@ public class StoveCounter : BaseCounter,IHasProgress
                 {
                     fryingKitchenObjectSO = GetFryingTargetKitchenObjectSO(GetKitchenObject().getKitchenObjectSO());
                     state = State.Frying;
-                    fryingTImer = 0f;
+                    fryingTimer = 0f;
                     OnStoveUse?.Invoke(this, new OnStoveUseEventArgs { currentState = state });
                 }
                 break;
             case State.Frying:
-                fryingTImer += Time.deltaTime;
-                OnProgressMade?.Invoke(this, new IHasProgress.OnProgressEventArgs { currentProgress = (float)fryingTImer / fryingKitchenObjectSO.fryingTimer});
-                if (fryingTImer > fryingKitchenObjectSO.fryingTimer)
+                fryingTimer += Time.deltaTime;
+                OnProgressMade?.Invoke(this, new IHasProgress.OnProgressEventArgs { currentProgress = (float)fryingTimer / fryingKitchenObjectSO.fryingTimer});
+                if (fryingTimer > fryingKitchenObjectSO.fryingTimer)
                 {
                     GetKitchenObject().DestroySelf();
                     ClearKitchenObject();
@@ -60,6 +67,7 @@ public class StoveCounter : BaseCounter,IHasProgress
             case State.Fried:
                 burnTimer += Time.deltaTime;
                 OnProgressMade?.Invoke(this, new IHasProgress.OnProgressEventArgs { currentProgress = (float)burnTimer / burningKitchenObjectSO.burningTimer});
+                OnBurning?.Invoke(this, new OnBurningEventArgs { kitchenObjectBurnTimer = burningKitchenObjectSO.burningTimer,burnTimer = burnTimer });
                 if (burnTimer > burningKitchenObjectSO.burningTimer)
                 {
                     GetKitchenObject().DestroySelf();

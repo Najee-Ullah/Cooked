@@ -179,7 +179,6 @@ GameObject:
   - component: {fileID: 2085798758724821665}
   - component: {fileID: 5789179996412386110}
   - component: {fileID: 6375567762180558275}
-  - component: {fileID: 8245127933641528863}
   m_Layer: 3
   m_Name: ProgressCanvas
   m_TagString: Untagged
@@ -284,17 +283,3 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Mode: 2
---- !u!114 &8245127933641528863
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7969193320015230494}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c7ebb78c4c5672a4f97ef1321e994154, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  progressBar: {fileID: 6888159560653259965}
-  targetObject: {fileID: 0}

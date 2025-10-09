@@ -18,4 +18,9 @@ public static class Loader
     {
         SceneManager.LoadScene(SceneToLoad);
     }
+    public static void ReloadScene()
+    {
+        SceneToLoad = SceneManager.GetActiveScene().name;
+        SceneManager.LoadScene("Loading");
+    }
 }

@@ -9,7 +9,7 @@ public class GameOverUI : MonoBehaviour
     [SerializeField] GameObject Visual;
     [SerializeField] Image circularFill;
     [SerializeField] TextMeshProUGUI deliveryText;
-
+    [SerializeField] Button RestartButton;
     float totalGameplayTimer;
 
     private void Start()
@@ -17,6 +17,7 @@ public class GameOverUI : MonoBehaviour
         Hide();
         totalGameplayTimer = KitchenGameManager.Instance.GetGamePlayTimer();
         KitchenGameManager.Instance.OnGameOver += Instance_OnGameOver1;
+        RestartButton.onClick.AddListener(() => { Loader.ReloadScene(); });
     }
 
     private void Instance_OnGameOver1(object sender, System.EventArgs e)

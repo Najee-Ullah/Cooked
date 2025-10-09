@@ -1,6 +1,5 @@
 ﻿
 using System;
-using System.Data;
 using UnityEngine;
 
 public class KitchenGameManager : MonoBehaviour
@@ -16,16 +15,26 @@ public class KitchenGameManager : MonoBehaviour
         GameOver,
         GamePaused
     }
-    public float countDownTimer = 5f;
-    private float gamePlayTimer = 30f;
+    [SerializeField] private float countDownTimer = 5f;
+    private float elapsedTime;
+
+    [SerializeField] private float gamePlayTimer = 30f;
     private State state;
 
     public event EventHandler OnGameOver;
-    public event EventHandler <OnGameSateChangedEventArgs >OnGameStateChanged;
+    public event EventHandler <OnGameSateChangedEventArgs> OnGameStateChanged;
+    public event EventHandler <OnCountChangedEventArgs> OnCountChanged;
+
+    public class OnCountChangedEventArgs : EventArgs
+    {
+        public int count;
+    }
+
     public class OnGameSateChangedEventArgs : EventArgs
     {
         public State currentState;
     }
+
 
     private void Awake()
     {
@@ -39,6 +48,8 @@ public class KitchenGameManager : MonoBehaviour
 
     private void Start()
     {
+        elapsedTime = countDownTimer+1;
+
         state = State.GameCountDown;
         InputSystem.OnPauseAction += InputSystem_OnPauseAction;
     }
@@ -54,6 +65,11 @@ public class KitchenGameManager : MonoBehaviour
         { 
             case State.GameCountDown:
                 countDownTimer -= Time.deltaTime;
+                if(Mathf.CeilToInt(countDownTimer)!= Mathf.CeilToInt(elapsedTime))
+                {
+                    elapsedTime = Mathf.CeilToInt(countDownTimer);
+                    OnCountChanged?.Invoke(this, new OnCountChangedEventArgs { count = Mathf.CeilToInt(countDownTimer) });
+                }
                 if(countDownTimer <= 0)
                 {
                     state = State.GamePlaying;
@@ -80,10 +96,6 @@ public class KitchenGameManager : MonoBehaviour
     public bool IsGamePlaying()
     {
         return state == State.GamePlaying;
-    }
-    public float GetCountDownTimer()
-    {
-        return countDownTimer;
     }
     public float GetGamePlayTimer()
     {
