@@ -9,6 +9,10 @@ public class ResetStaticDataManager : MonoBehaviour
         BaseCounter.ResetStaticData();
         TrashCounter.ResetStaticData();
         CuttingCounter.ResetStaticData();
+        StoveCounterVisual.ResetStaticData();
+        PlateCounter.ResetStaticData();
+        ClearCounter.ResetStaticData();
+        ContainerCounter.ResetStaticData();
     }
     private void Start()
     {

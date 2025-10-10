@@ -37,3 +37,4 @@ MonoBehaviour:
   warning:
   - {fileID: 8300000, guid: b90d8099bdbf09a40ab1163556d5b5f4, type: 3}
   - {fileID: 8300000, guid: b59c98e0066c41f42b8100f5cb180f5b, type: 3}
+  plateSound: {fileID: 8300000, guid: 9f6cb526e492f0b47afa2f7d91632e6a, type: 3}

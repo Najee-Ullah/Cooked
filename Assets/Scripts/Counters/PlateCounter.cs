@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlateCounter : BaseCounter
@@ -15,6 +16,12 @@ public class PlateCounter : BaseCounter
 
     public event EventHandler OnPlateRemove;
 
+    public static event EventHandler OnPlatePickUp;
+
+    public new static void ResetStaticData()
+    {
+        OnPlatePickUp = null;
+    }
     private void Update()
     {
         currentTime += Time.deltaTime;
@@ -38,6 +45,7 @@ public class PlateCounter : BaseCounter
                 KitchenObject.CreateKitchenObject(plate, player);
                 currentNoOfPlates --;
                 OnPlateRemove?.Invoke(this, EventArgs.Empty);
+                OnPlatePickUp?.Invoke(this, EventArgs.Empty);
             }
         }
     }

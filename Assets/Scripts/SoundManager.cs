@@ -29,7 +29,44 @@ public class SoundManager : MonoBehaviour
         TrashCounter.onDump += TrashCounter_onDump;
         BaseCounter.onDropObject += BaseCounter_onDropObject;
         BaseCounter.onPickObject += BaseCounter_onPickObject;
+        StoveCounterVisual.OnCautionWarning += StoveCounterVisual_OnCautionWarning;
+        KitchenGameManager.Instance.OnCountChanged += Instance_OnCountChanged;
+        PlateCounter.OnPlatePickUp += PlateCounter_OnPlateRemove;
+        ClearCounter.OnPlaceInPlate += ClearCounter_OnPlaceInPlate;
+        ContainerCounter.OnCreateObject += ContainerCounter_OnCreateObject;
+    }
 
+    private void ContainerCounter_OnCreateObject(object sender, System.EventArgs e)
+    {
+        ContainerCounter containerCounter = sender as ContainerCounter;
+        PlaySoundInArray(SFXRefsSO.objectPickUpSound, containerCounter.transform.position);
+
+    }
+
+    private void ClearCounter_OnPlaceInPlate(object sender, System.EventArgs e)
+    {
+        ClearCounter clearCounter = sender as ClearCounter;
+        PlaySoundInArray(SFXRefsSO.objectDropSound, clearCounter.transform.position);
+    }
+
+    private void PlateCounter_OnPlateRemove(object sender, System.EventArgs e)
+    {
+        PlateCounter plateCounter = sender as PlateCounter;
+        PlaySound(SFXRefsSO.plateSound, plateCounter.transform.position);
+    }
+
+    private void Instance_OnCountChanged(object sender, KitchenGameManager.OnCountChangedEventArgs e)
+    {
+        if (e.count > 0)
+            PlaySound(SFXRefsSO.warning[1], Camera.main.transform.position);
+        else
+            PlaySound(SFXRefsSO.warning[0], Camera.main.transform.position);
+    }
+
+    private void StoveCounterVisual_OnCautionWarning(object sender, System.EventArgs e)
+    {
+        StoveCounterVisual stoveCounterVisual = sender as StoveCounterVisual;
+        PlaySoundInArray(SFXRefsSO.warning, stoveCounterVisual.transform.position);
     }
 
     private void BaseCounter_onPickObject(object sender, System.EventArgs e)

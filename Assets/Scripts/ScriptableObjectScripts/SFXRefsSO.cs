@@ -13,4 +13,5 @@ public class SFXRefsSO : ScriptableObject
     public AudioClip[] deliverySuccess;
     public AudioClip stoveSizzleLoop;
     public AudioClip[] warning;
+    public AudioClip plateSound;
 }

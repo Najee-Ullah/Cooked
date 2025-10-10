@@ -24,6 +24,7 @@ public class GameOverUI : MonoBehaviour
     {
         deliveryText.text += DeliveryCounter.Instance.GetDeliveredAmount().ToString();
         Show();
+        RestartButton.Select();
     }
 
     private void Update()

@@ -1,5 +1,7 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -14,6 +16,13 @@ public class StoveCounterVisual : MonoBehaviour
     private const string BURNING = "Burning";
 
     private Animator animator;
+
+    public static event EventHandler OnCautionWarning;
+
+    public static void ResetStaticData()
+    {
+        OnCautionWarning = null;
+    }
 
     private void Start()
     {
@@ -31,6 +40,7 @@ public class StoveCounterVisual : MonoBehaviour
         {
             CautionVisual.gameObject.SetActive(true);
             animator.SetBool(BURNING, true);
+            OnCautionWarning?.Invoke(this, EventArgs.Empty);
         }
         else 
         {

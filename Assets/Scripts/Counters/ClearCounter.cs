@@ -1,9 +1,17 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class ClearCounter : BaseCounter
 {
+    public static event EventHandler OnPlaceInPlate;
+
+    public new static void ResetStaticData()
+    {
+        OnPlaceInPlate = null;
+    }
+
     public override void Interact(Player player)
     {
         if (!HasKitchenObject())
@@ -31,6 +39,7 @@ public class ClearCounter : BaseCounter
                     {
                         if (plateKitchenObject.TryAddIngredient(player.GetKitchenObject().getKitchenObjectSO()))
                         {
+                            OnPlaceInPlate?.Invoke(this,EventArgs.Empty);
                             player.GetKitchenObject().DestroySelf();
                         }
                     }
