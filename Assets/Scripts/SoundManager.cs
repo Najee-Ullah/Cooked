@@ -52,15 +52,15 @@ public class SoundManager : MonoBehaviour
     private void PlateCounter_OnPlateRemove(object sender, System.EventArgs e)
     {
         PlateCounter plateCounter = sender as PlateCounter;
-        PlaySound(SFXRefsSO.plateSound, plateCounter.transform.position);
+        PlaySound(SFXRefsSO.plateSound, plateCounter.transform.position,volumeMultiplier);
     }
 
     private void Instance_OnCountChanged(object sender, KitchenGameManager.OnCountChangedEventArgs e)
     {
         if (e.count > 0)
-            PlaySound(SFXRefsSO.warning[1], Camera.main.transform.position);
+            PlaySound(SFXRefsSO.warning[1], Camera.main.transform.position,volumeMultiplier);
         else
-            PlaySound(SFXRefsSO.warning[0], Camera.main.transform.position);
+            PlaySound(SFXRefsSO.warning[0], Camera.main.transform.position,volumeMultiplier);
     }
 
     private void StoveCounterVisual_OnCautionWarning(object sender, System.EventArgs e)
