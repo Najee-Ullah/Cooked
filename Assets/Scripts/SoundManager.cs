@@ -4,15 +4,26 @@ using UnityEngine;
 public class SoundManager : MonoBehaviour
 {
     [SerializeField] SFXRefsSO SFXRefsSO;
+    [SerializeField] AudioSource BackgroundMusic;
     public static SoundManager Instance;
 
     private float volumeMultiplier = .1f;
     private const string VOLUME = "volume";
+    private bool IsBackgroundMusicEnabled = false;
 
+    public enum CurrentScene
+    {
+        MainMenu,
+        Game
+    }
+    [SerializeField] CurrentScene currentScene;
     private void Awake()
     {
         if(PlayerPrefs.HasKey(VOLUME)) 
           volumeMultiplier = PlayerPrefs.GetFloat(VOLUME);
+
+        ToggleMusic();
+        
     }
 
     private void Start()
@@ -22,18 +33,20 @@ public class SoundManager : MonoBehaviour
             Destroy(Instance);
         }
         Instance = this;
-
-        DeliveryCounter.Instance.OrderSuccess += DeliveryCounter_OrderSuccess;
-        DeliveryCounter.Instance.OrderFail += DeliveryCounter_OrderFail;
-        CuttingCounter.OnCutAll += CuttingCounter_OnCutAll;
-        TrashCounter.onDump += TrashCounter_onDump;
-        BaseCounter.onDropObject += BaseCounter_onDropObject;
-        BaseCounter.onPickObject += BaseCounter_onPickObject;
-        StoveCounterVisual.OnCautionWarning += StoveCounterVisual_OnCautionWarning;
-        KitchenGameManager.Instance.OnCountChanged += Instance_OnCountChanged;
-        PlateCounter.OnPlatePickUp += PlateCounter_OnPlateRemove;
-        ClearCounter.OnPlaceInPlate += ClearCounter_OnPlaceInPlate;
-        ContainerCounter.OnCreateObject += ContainerCounter_OnCreateObject;
+        if (currentScene == CurrentScene.Game)
+        {
+            DeliveryCounter.Instance.OrderSuccess += DeliveryCounter_OrderSuccess;
+            DeliveryCounter.Instance.OrderFail += DeliveryCounter_OrderFail;
+            CuttingCounter.OnCutAll += CuttingCounter_OnCutAll;
+            TrashCounter.onDump += TrashCounter_onDump;
+            BaseCounter.onDropObject += BaseCounter_onDropObject;
+            BaseCounter.onPickObject += BaseCounter_onPickObject;
+            StoveCounterVisual.OnCautionWarning += StoveCounterVisual_OnCautionWarning;
+            KitchenGameManager.Instance.OnCountChanged += Instance_OnCountChanged;
+            PlateCounter.OnPlatePickUp += PlateCounter_OnPlateRemove;
+            ClearCounter.OnPlaceInPlate += ClearCounter_OnPlaceInPlate;
+            ContainerCounter.OnCreateObject += ContainerCounter_OnCreateObject;
+        }
     }
 
     private void ContainerCounter_OnCreateObject(object sender, System.EventArgs e)
@@ -129,5 +142,26 @@ public class SoundManager : MonoBehaviour
     public int GetVolume()
     {
         return (int)(volumeMultiplier * 10);
+    }
+    public void ToggleMusic()
+    {
+        if (BackgroundMusic != null)
+        {
+            if (!IsBackgroundMusicEnabled)
+            {
+                IsBackgroundMusicEnabled = true;
+                BackgroundMusic.volume = 1 * volumeMultiplier;
+            }
+            else
+            {
+                IsBackgroundMusicEnabled = false;
+                BackgroundMusic.volume = 0 * volumeMultiplier;
+
+            }
+        }
+    }
+    public bool IsMusicEnabled()
+    {
+        return IsBackgroundMusicEnabled;
     }
 }

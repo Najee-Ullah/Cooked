@@ -8,10 +8,13 @@ using UnityEngine.UI;
 
 public class OptionsMenuUI : MonoBehaviour
 {
-    [SerializeField] PauseMenuUI pauseUI; 
+    [SerializeField] GameObject MenuUI;
+    [SerializeField] Button DefaultButton;
     [SerializeField] Button VolumeButton;
     [SerializeField] TextMeshProUGUI VolumeText;
     [SerializeField] Button BackToMenuButton;
+    [SerializeField] Button ToggleMusicButton;
+    [SerializeField] TextMeshProUGUI ToggleMusicText;
     [SerializeField] GameObject Visual;
     [SerializeField] GameObject KeyBindingVisual;
 
@@ -45,7 +48,9 @@ public class OptionsMenuUI : MonoBehaviour
         
 
         VolumeButton.onClick.AddListener(() => { SoundManager.Instance.AdjustVolume();UpdateVisual(); });
-        BackToMenuButton.onClick.AddListener(() => { Hide(); pauseUI.Show(); });
+        ToggleMusicButton.onClick.AddListener(() => { SoundManager.Instance.ToggleMusic(); UpdateVisual(); });
+        //confusing ui logic when handling menu visuals
+        BackToMenuButton.onClick.AddListener(() => { Hide(); MenuUI.gameObject.SetActive(true);DefaultButton.Select(); });
 
     }
     private void Start()
@@ -57,6 +62,7 @@ public class OptionsMenuUI : MonoBehaviour
     private void UpdateVisual()
     {
         VolumeText.text = "Volume : " + SoundManager.Instance.GetVolume().ToString();
+        ToggleMusicText.text = "Music : " + SoundManager.Instance.IsMusicEnabled().ToString();
     }
     private void SetKeyBindings()
     {
@@ -94,7 +100,7 @@ public class OptionsMenuUI : MonoBehaviour
     }
     private void OnEnable()
     {
-        InputSystem.Instance.OnRebindStart +=()=> KeyBindingVisual.SetActive(true);
+        InputSystem.Instance.OnRebindStart +=()=> KeyBindingVisual.SetActive(true);//error problem when starting in mainmenu
         InputSystem.Instance.OnRebindComplete += () => KeyBindingVisual.SetActive(false);
     }
     private void OnDisable()
