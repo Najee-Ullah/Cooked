@@ -8,7 +8,7 @@ using UnityEngine.UI;
 
 public class OptionsMenuUI : MonoBehaviour
 {
-    [SerializeField] GameObject MenuUI;
+    [Tooltip("Current Scenes Option Menu UI")] [SerializeField] GameObject MenuUI;
     [SerializeField] Button DefaultButton;
     [SerializeField] Button VolumeButton;
     [SerializeField] TextMeshProUGUI VolumeText;
@@ -49,8 +49,7 @@ public class OptionsMenuUI : MonoBehaviour
 
         VolumeButton.onClick.AddListener(() => { SoundManager.Instance.AdjustVolume();UpdateVisual(); });
         ToggleMusicButton.onClick.AddListener(() => { SoundManager.Instance.ToggleMusic(); UpdateVisual(); });
-        //confusing ui logic when handling menu visuals
-        BackToMenuButton.onClick.AddListener(() => { Hide(); MenuUI.gameObject.SetActive(true);DefaultButton.Select(); });
+        BackToMenuButton.onClick.AddListener(() => { Hide(); if(MenuUI.TryGetComponent<IShow>(out IShow hidable))hidable.Show();DefaultButton.Select(); });
 
     }
     private void Start()
@@ -100,13 +99,18 @@ public class OptionsMenuUI : MonoBehaviour
     }
     private void OnEnable()
     {
-        InputSystem.Instance.OnRebindStart +=()=> KeyBindingVisual.SetActive(true);//error problem when starting in mainmenu
-        InputSystem.Instance.OnRebindComplete += () => KeyBindingVisual.SetActive(false);
+        if (InputSystem.Instance != null)
+        {
+            InputSystem.Instance.OnRebindStart += () => KeyBindingVisual.SetActive(true);
+            InputSystem.Instance.OnRebindComplete += () => KeyBindingVisual.SetActive(false);
+        }
     }
     private void OnDisable()
     {
-        InputSystem.Instance.OnRebindStart -= () => KeyBindingVisual.SetActive(true);
-        InputSystem.Instance.OnRebindComplete -= () => KeyBindingVisual.SetActive(false);
-
+        if (InputSystem.Instance != null)
+        {
+            InputSystem.Instance.OnRebindStart -= () => KeyBindingVisual.SetActive(true);
+            InputSystem.Instance.OnRebindComplete -= () => KeyBindingVisual.SetActive(false);
+        }
     }
 }

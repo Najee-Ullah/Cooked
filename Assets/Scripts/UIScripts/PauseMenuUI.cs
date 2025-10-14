@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class PauseMenuUI : MonoBehaviour
+public class PauseMenuUI : MonoBehaviour,IShow
 {
     [SerializeField] Button ResumeButton;
     [SerializeField] Button OptionsButton;

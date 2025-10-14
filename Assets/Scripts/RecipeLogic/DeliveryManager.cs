@@ -32,14 +32,17 @@ public class DeliveryManager : MonoBehaviour
     }
     private void Update()
     {
-        currentTime -= Time.deltaTime;
-        if (currentTime <= 0)
+        if (KitchenGameManager.Instance.IsGamePlaying())
         {
-            currentTime = RecipeSpawnTimer;
-            if (currentOrderList.Count < maxOrders)
+            currentTime -= Time.deltaTime;
+            if (currentTime <= 0)
             {
-                currentOrderList.Add(recipeListSO.recipeListSOs[UnityEngine.Random.Range(0, recipeListSO.recipeListSOs.Length)]);
-                OrderAdded?.Invoke(this, EventArgs.Empty);
+                currentTime = RecipeSpawnTimer;
+                if (currentOrderList.Count < maxOrders)
+                {
+                    currentOrderList.Add(recipeListSO.recipeListSOs[UnityEngine.Random.Range(0, recipeListSO.recipeListSOs.Length)]);
+                    OrderAdded?.Invoke(this, EventArgs.Empty);
+                }
             }
         }
        

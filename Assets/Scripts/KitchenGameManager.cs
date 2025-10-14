@@ -10,6 +10,7 @@ public class KitchenGameManager : MonoBehaviour
     [SerializeField] InputSystem InputSystem;
 
     public enum State {
+        GameToStart,
         GameCountDown,
         GamePlaying,
         GameOver,
@@ -50,7 +51,7 @@ public class KitchenGameManager : MonoBehaviour
     {
         elapsedTime = countDownTimer+1;
 
-        state = State.GameCountDown;
+        state = State.GameToStart;
         InputSystem.OnPauseAction += InputSystem_OnPauseAction;
     }
 
@@ -62,7 +63,15 @@ public class KitchenGameManager : MonoBehaviour
     private void Update()
     {
         switch (state)
-        { 
+        {
+            default:
+            case State.GameToStart:
+                if (Input.anyKeyDown)
+                {
+                    state = State.GameCountDown;
+                    OnGameStateChanged?.Invoke(this, new OnGameSateChangedEventArgs { currentState = state });
+                }
+                break;
             case State.GameCountDown:
                 countDownTimer -= Time.deltaTime;
                 if(Mathf.CeilToInt(countDownTimer)!= Mathf.CeilToInt(elapsedTime))
@@ -118,5 +127,9 @@ public class KitchenGameManager : MonoBehaviour
             state = State.GamePaused;
             OnGameStateChanged?.Invoke(this, new OnGameSateChangedEventArgs { currentState = state });
         }
+    }
+    bool isGamePlaying()
+    {
+        return state == State.GamePlaying;
     }
 }

@@ -816,8 +816,8 @@ MonoBehaviour:
     m_WrapAround: 0
     m_SelectOnUp: {fileID: 2870018286638472462}
     m_SelectOnDown: {fileID: 1252078274327736908}
-    m_SelectOnLeft: {fileID: 4855139774288148411}
-    m_SelectOnRight: {fileID: 4855139774288148411}
+    m_SelectOnLeft: {fileID: 3071778294233966003}
+    m_SelectOnRight: {fileID: 3071778294233966003}
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 0.16352195, g: 0.16352195, b: 0.16352195, a: 1}
@@ -1559,8 +1559,8 @@ MonoBehaviour:
     m_WrapAround: 0
     m_SelectOnUp: {fileID: 2870018286638472462}
     m_SelectOnDown: {fileID: 1252078274327736908}
-    m_SelectOnLeft: {fileID: 3071778294233966003}
-    m_SelectOnRight: {fileID: 3071778294233966003}
+    m_SelectOnLeft: {fileID: 4855139774288148411}
+    m_SelectOnRight: {fileID: 4855139774288148411}
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 0.16352195, g: 0.16352195, b: 0.16352195, a: 1}

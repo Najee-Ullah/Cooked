@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class MenuUI : MonoBehaviour
+public class MenuUI : MonoBehaviour, IShow
 {
     [SerializeField] Button StartButton;
     [SerializeField] Button QuitButton;
@@ -21,11 +21,11 @@ public class MenuUI : MonoBehaviour
         StartButton.Select();
 
     }
-    //private void Show()
-    //{
-    //    Visual.SetActive(true);
-    //}
-    private void Hide()
+    public void Show()
+    {
+        Visual.SetActive(true);
+    }
+    public void Hide()
     {
         Visual.SetActive(false);
     }
