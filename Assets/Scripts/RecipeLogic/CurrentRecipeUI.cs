@@ -12,8 +12,8 @@ public class CurrentRecipeUI : MonoBehaviour
     }
     private void Start()
     {
-        DeliveryManager.Instance.OrderAdded += Instance_OrderAdded;
-        DeliveryManager.Instance.OrderRemoved += Instance_OrderRemoved;
+        DeliveryManager.Instance.OnOrderAdded += Instance_OrderAdded;
+        DeliveryManager.Instance.OnOrderRemoved += Instance_OrderRemoved;
         UpdateVisual();
     }
 

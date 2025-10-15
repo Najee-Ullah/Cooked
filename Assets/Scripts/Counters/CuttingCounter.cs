@@ -5,7 +5,6 @@ using UnityEngine;
 
 public class CuttingCounter : BaseCounter,IHasProgress
 {
-    [SerializeField] KitchenObjectSO slicedTomato;
     [SerializeField] CuttingKitchenObjectSO[] cuttingKitchenObjectSOs;
 
     public static event EventHandler OnCutAll;

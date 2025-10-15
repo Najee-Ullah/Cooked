@@ -6,8 +6,8 @@ public class DeliveryCounter : BaseCounter
 {
     public static DeliveryCounter Instance {get;private set; }
 
-    public event EventHandler OrderSuccess;
-    public event EventHandler OrderFail;
+    public event EventHandler OnOrderSuccess;
+    public event EventHandler OnOrderFail;
 
     private int deliveriesCompleted = 0; 
 
@@ -24,46 +24,43 @@ public class DeliveryCounter : BaseCounter
 
     public override void Interact(Player player)
     {
-        if(player.GetKitchenObject().tryGetPlate(out PlateKitchenObject plateKitchenObject))
+        if (player.GetKitchenObject().tryGetPlate(out PlateKitchenObject plateKitchenObject))
         {
             List<KitchenObjectSO> kSOList = plateKitchenObject.GetKitchenObjectSOList();
             List<RecipeSO> currentOrderList = DeliveryManager.Instance.GetCurrentOrderList();
             bool found = false;
-            for(int i = 0;i<currentOrderList.Count;i++)
+            if (kSOList.Count == currentOrderList[0].kitchenObjectSOs.Count)
             {
-                if (kSOList.Count == currentOrderList[i].kitchenObjectSOs.Count)
+                bool correctOrder = true;
+                for (int j = 0; j < kSOList.Count; j++)
                 {
-                    bool correctOrder = true;
-                    for(int j =0;j< kSOList.Count; j++)
+                    if (currentOrderList[0].kitchenObjectSOs.Contains(kSOList[j]))
                     {
-                        if (currentOrderList[i].kitchenObjectSOs.Contains(kSOList[j]))
-                        {
-                            //nothing
-                        }
-                        else
-                        {
-                            correctOrder = false;
-                        }
+                        //nothing
                     }
-                    if (correctOrder)
+                    else
                     {
-                        plateKitchenObject.DestroySelf();
-                        currentOrderList.RemoveAt(i);
-                        DeliveryManager.Instance.RemoveOrder();
-                        found = true;
-                        OrderSuccess?.Invoke(this, EventArgs.Empty);
-                        deliveriesCompleted++;
-
-                        break;
+                        correctOrder = false;
                     }
                 }
+                if (correctOrder)
+                {
+                    plateKitchenObject.DestroySelf();
+                    currentOrderList.RemoveAt(0);
+                    DeliveryManager.Instance.RemoveOrder();
+                    found = true;
+                    OnOrderSuccess?.Invoke(this, EventArgs.Empty);
+                    deliveriesCompleted++;
+
+                }
             }
-            if(!found)
+            if (!found)
             {
-                //no matching recipe found
+                //not a matching recipe 
                 plateKitchenObject.DestroySelf();
-                OrderFail?.Invoke(this, EventArgs.Empty);
+                OnOrderFail?.Invoke(this, EventArgs.Empty);
             }
+
 
         }
     }

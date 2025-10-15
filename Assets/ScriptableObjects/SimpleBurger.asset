@@ -16,3 +16,4 @@ MonoBehaviour:
   - {fileID: 11400000, guid: bc268328574aa944dbee9a2c3e7ba046, type: 2}
   - {fileID: 11400000, guid: 625ad035570d2ec4997a41877b98e68d, type: 2}
   RecipeName: Simple Burger
+  RecipeIcon: {fileID: 21300000, guid: c8d682712b1170a4cb7c4829d4baf640, type: 3}

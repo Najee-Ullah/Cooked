@@ -575,8 +575,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   kitchenObjectLocation: {fileID: 552064089939980376}
-  slicedTomato: {fileID: 0}
-  cuttingKitchenObjectSOs: []
+  slicedTomato: {fileID: 11400000, guid: ea2edadadffa30747bab51226196e638, type: 2}
+  cuttingKitchenObjectSOs:
+  - {fileID: 11400000, guid: 7ffbb4122b14fd2418d6f79356b6568e, type: 2}
+  - {fileID: 11400000, guid: 89a991c46825afb4695cae6a8f3076d8, type: 2}
 --- !u!4 &8007406020732629375 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3826486464296254764, guid: cab3d6ce1e4a0a94d996a145c8b3019d,

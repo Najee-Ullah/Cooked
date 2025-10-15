@@ -8,8 +8,14 @@ public class DeliveryManager : MonoBehaviour
     [SerializeField] private int maxOrders = 3;
     [SerializeField] private RecipeListSO recipeListSO;
 
-    public event EventHandler OrderAdded;
-    public event EventHandler OrderRemoved;
+    public event EventHandler <OnOrderAddedEventArgs> OnOrderAdded;
+
+    public class OnOrderAddedEventArgs : EventArgs { 
+        public RecipeSO recipeSO;
+    }
+
+
+    public event EventHandler OnOrderRemoved;
     private float currentTime;
     public static DeliveryManager Instance;
     private List<RecipeSO> currentOrderList;
@@ -40,8 +46,9 @@ public class DeliveryManager : MonoBehaviour
                 currentTime = RecipeSpawnTimer;
                 if (currentOrderList.Count < maxOrders)
                 {
-                    currentOrderList.Add(recipeListSO.recipeListSOs[UnityEngine.Random.Range(0, recipeListSO.recipeListSOs.Length)]);
-                    OrderAdded?.Invoke(this, EventArgs.Empty);
+                    RecipeSO order = recipeListSO.recipeListSOs[UnityEngine.Random.Range(0, recipeListSO.recipeListSOs.Length)];
+                    currentOrderList.Add(order);
+                    OnOrderAdded?.Invoke(this, new OnOrderAddedEventArgs { recipeSO = order});
                 }
             }
         }
@@ -53,7 +60,7 @@ public class DeliveryManager : MonoBehaviour
     }
     public void RemoveOrder()
     {
-        OrderRemoved?.Invoke(this, EventArgs.Empty);
+        OnOrderRemoved?.Invoke(this, EventArgs.Empty);
     }
 
 }

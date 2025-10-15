@@ -16,3 +16,4 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 4ec36d7d6d893a341bf8fdd321c10c51, type: 2}
   - {fileID: 11400000, guid: ea2edadadffa30747bab51226196e638, type: 2}
   RecipeName: Salad
+  RecipeIcon: {fileID: 21300000, guid: 46a14f048331fe8489d8cc7c1adaf842, type: 3}

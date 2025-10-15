@@ -35,8 +35,8 @@ public class SoundManager : MonoBehaviour
         Instance = this;
         if (currentScene == CurrentScene.Game)
         {
-            DeliveryCounter.Instance.OrderSuccess += DeliveryCounter_OrderSuccess;
-            DeliveryCounter.Instance.OrderFail += DeliveryCounter_OrderFail;
+            DeliveryCounter.Instance.OnOrderSuccess += DeliveryCounter_OrderSuccess;
+            DeliveryCounter.Instance.OnOrderFail += DeliveryCounter_OrderFail;
             CuttingCounter.OnCutAll += CuttingCounter_OnCutAll;
             TrashCounter.onDump += TrashCounter_onDump;
             BaseCounter.onDropObject += BaseCounter_onDropObject;

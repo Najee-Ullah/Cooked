@@ -20,6 +20,7 @@ public class KitchenGameManager : MonoBehaviour
     private float elapsedTime;
 
     [SerializeField] private float gamePlayTimer = 30f;
+    [SerializeField] private float gameplayBonus = 10f;
     private State state;
 
     public event EventHandler OnGameOver;
@@ -53,6 +54,12 @@ public class KitchenGameManager : MonoBehaviour
 
         state = State.GameToStart;
         InputSystem.OnPauseAction += InputSystem_OnPauseAction;
+        DeliveryCounter.Instance.OnOrderSuccess += Instance_OrderSuccess;
+    }
+
+    private void Instance_OrderSuccess(object sender, EventArgs e)
+    {
+        IncreaseTime();
     }
 
     private void InputSystem_OnPauseAction(object sender, EventArgs e)
@@ -128,8 +135,12 @@ public class KitchenGameManager : MonoBehaviour
             OnGameStateChanged?.Invoke(this, new OnGameSateChangedEventArgs { currentState = state });
         }
     }
-    bool isGamePlaying()
+    public bool isGamePlaying()
     {
         return state == State.GamePlaying;
+    }
+    public void IncreaseTime()
+    {
+        gamePlayTimer += gameplayBonus;
     }
 }
