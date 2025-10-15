@@ -10,7 +10,7 @@ public class CustomerManager : MonoBehaviour
     [SerializeField] Transform CustomerDestroyeTransform;
     [Header("Settings")]
     [SerializeField] Transform CustomerPrefab;
-    [SerializeField] private float queueSpacing = 2f;
+    [SerializeField] private float queueSpacing = 2f,customerMoveSpeed = 4f;
     [SerializeField] private int customerPoolSize = 4;
     private List<Customer> customers;
     private ObjectPool<Customer> customerPool;
@@ -30,7 +30,7 @@ public class CustomerManager : MonoBehaviour
         Customer customer = customerPool.Get();
         customer.transform.position = CustomerInstantiateTransform.position;
         //configure customer
-        customer.SetCustomerOrder(e.recipeSO);
+        customer.SetupCustomer(e.recipeSO,customerMoveSpeed);
         customer.OnCustomerDisable += Customer_OnCustomerDisable; ;
         customer.ReachTarget(CustomerTargetTransform.position);
 

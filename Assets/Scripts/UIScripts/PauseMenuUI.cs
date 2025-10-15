@@ -26,6 +26,7 @@ public class PauseMenuUI : MonoBehaviour,IShow
         KitchenGameManager.Instance.OnGameStateChanged += KitchenGameManager_OnGameStateChanged;
     }
 
+
     private void KitchenGameManager_OnGameStateChanged(object sender, KitchenGameManager.OnGameSateChangedEventArgs e)
     {
         if(e.currentState == KitchenGameManager.State.GamePaused)

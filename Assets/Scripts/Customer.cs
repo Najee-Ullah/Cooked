@@ -14,22 +14,26 @@ public class Customer : MonoBehaviour
 
     public event Action<Customer> OnCustomerDisable;
 
-    public void SetCustomerOrder(RecipeSO recipe)
+    public void SetupCustomer(RecipeSO recipe,float moveSpeed)
     {
         //desiredRecipe = recipe;
         recipeImage.sprite = recipe.RecipeIcon;
-        
+        movementSpeed = moveSpeed;
     }
     private void Update()
     {
         //keep moving until reached destination
-        if (!hasReachedDestination())
+        if (!HasReachedDestination())
         {
             Vector3 moveDir = targetPos - transform.position;
             moveDir.Normalize();
             transform.position = Vector3.MoveTowards(transform.position,targetPos,movementSpeed * Time.deltaTime);
 
-
+            if (moveDir != Vector3.zero)
+            {
+                Quaternion targetRotation = Quaternion.LookRotation(moveDir);
+                transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime *movementSpeed);
+            }
         }
         else if (shouldDestroy)
         {
@@ -41,18 +45,17 @@ public class Customer : MonoBehaviour
     public void ReachTarget(Vector3 target)
     {
         this.targetPos = target;
-        transform.LookAt(targetPos);
     }
 
     public void DestroySelf(Transform target)
     {
         shouldDestroy = true;
         this.targetPos = target.position;
-        if (hasReachedDestination())
+        if (HasReachedDestination())
             OnCustomerDisable?.Invoke(this);
     }
 
-    private bool hasReachedDestination()
+    private bool HasReachedDestination()
     {
         return Vector3.Distance(transform.position, targetPos) <= 0.05f;
     }

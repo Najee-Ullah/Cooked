@@ -12,6 +12,9 @@ public class MenuUI : MonoBehaviour, IShow
     [SerializeField] Button OptionsButton;
     [SerializeField] OptionsMenuUI OptionsMenuUI;
     [SerializeField] GameObject Visual;
+    [SerializeField] TextMeshProUGUI highScoreText;
+
+    private const string HIGHESTDELIVERIESMADE = "HighestDeliveriesMade";
 
     private void Awake()
     {
@@ -19,7 +22,14 @@ public class MenuUI : MonoBehaviour, IShow
         OptionsButton.onClick.AddListener(() => { OptionsMenuUI.Show(); Hide(); });
         QuitButton.onClick.AddListener(() => { Application.Quit(); });
         StartButton.Select();
-
+        if(PlayerPrefs.HasKey(HIGHESTDELIVERIESMADE))
+        {
+            highScoreText.text = "Current HighScore : " + PlayerPrefs.GetInt(HIGHESTDELIVERIESMADE);
+        }
+        else
+        {
+            highScoreText.text = "Current HighScore : 0";
+        }
     }
     public void Show()
     {

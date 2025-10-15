@@ -9,6 +9,8 @@ public class KitchenGameManager : MonoBehaviour
 
     [SerializeField] InputSystem InputSystem;
 
+    private const string HIGHESTDELIVERIESMADE = "HighestDeliveriesMade";
+
     public enum State {
         GameToStart,
         GameCountDown,
@@ -104,7 +106,20 @@ public class KitchenGameManager : MonoBehaviour
                 Time.timeScale = 0;
                 break;
             case State.GameOver:
-                break;
+                if (PlayerPrefs.HasKey(HIGHESTDELIVERIESMADE))
+                {
+                    if (PlayerPrefs.GetInt(HIGHESTDELIVERIESMADE) < DeliveryCounter.Instance.GetDeliveredAmount())
+                    {
+                        PlayerPrefs.SetInt(HIGHESTDELIVERIESMADE, DeliveryCounter.Instance.GetDeliveredAmount());
+                        PlayerPrefs.Save();
+                    }
+                }
+                else
+                {
+                    PlayerPrefs.SetInt(HIGHESTDELIVERIESMADE, DeliveryCounter.Instance.GetDeliveredAmount());
+                    PlayerPrefs.Save();
+                }
+                    break;
         }
         
     }

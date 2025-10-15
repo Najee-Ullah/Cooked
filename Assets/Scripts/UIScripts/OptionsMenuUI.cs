@@ -49,7 +49,7 @@ public class OptionsMenuUI : MonoBehaviour
 
         VolumeButton.onClick.AddListener(() => { SoundManager.Instance.AdjustVolume();UpdateVisual(); });
         ToggleMusicButton.onClick.AddListener(() => { SoundManager.Instance.ToggleMusic(); UpdateVisual(); });
-        BackToMenuButton.onClick.AddListener(() => { Hide(); if(MenuUI.TryGetComponent<IShow>(out IShow hidable))hidable.Show();DefaultButton.Select(); });
+        BackToMenuButton.onClick.AddListener(() => { GoBackToMenu(); });
 
     }
     private void Start()
@@ -58,6 +58,8 @@ public class OptionsMenuUI : MonoBehaviour
         KeyBindingVisual.SetActive(false);
         Hide();
     }
+
+
     private void UpdateVisual()
     {
         VolumeText.text = "Volume : " + SoundManager.Instance.GetVolume().ToString();
@@ -97,6 +99,16 @@ public class OptionsMenuUI : MonoBehaviour
     {
         Visual.SetActive(false);
     }
+
+    public void GoBackToMenu()
+    {
+        Hide();
+        if (MenuUI.TryGetComponent<IShow>(out IShow hidable))
+            hidable.Show();
+        DefaultButton.Select();
+
+    }
+
     private void OnEnable()
     {
         if (InputSystem.Instance != null)

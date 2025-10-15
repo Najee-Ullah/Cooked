@@ -617,6 +617,74 @@ MonoBehaviour:
   m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
   m_EffectDistance: {x: 0, y: -2}
   m_UseGraphicAlpha: 1
+--- !u!1001 &122088058
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 7624332003029426808, guid: 147d6d262f0e6594a8461726e0309e6c,
+        type: 3}
+      propertyPath: m_Name
+      value: BackgroundMusic
+      objectReference: {fileID: 0}
+    - target: {fileID: 7659090589221623144, guid: 147d6d262f0e6594a8461726e0309e6c,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 870.58563
+      objectReference: {fileID: 0}
+    - target: {fileID: 7659090589221623144, guid: 147d6d262f0e6594a8461726e0309e6c,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 264.37677
+      objectReference: {fileID: 0}
+    - target: {fileID: 7659090589221623144, guid: 147d6d262f0e6594a8461726e0309e6c,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 1.1553186
+      objectReference: {fileID: 0}
+    - target: {fileID: 7659090589221623144, guid: 147d6d262f0e6594a8461726e0309e6c,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7659090589221623144, guid: 147d6d262f0e6594a8461726e0309e6c,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7659090589221623144, guid: 147d6d262f0e6594a8461726e0309e6c,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7659090589221623144, guid: 147d6d262f0e6594a8461726e0309e6c,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7659090589221623144, guid: 147d6d262f0e6594a8461726e0309e6c,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7659090589221623144, guid: 147d6d262f0e6594a8461726e0309e6c,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7659090589221623144, guid: 147d6d262f0e6594a8461726e0309e6c,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 147d6d262f0e6594a8461726e0309e6c, type: 3}
 --- !u!1 &150287297
 GameObject:
   m_ObjectHideFlags: 0
@@ -1968,6 +2036,7 @@ MonoBehaviour:
   CustomerPrefab: {fileID: 3693689711547430125, guid: c3b13ca528400b146a06f831a5cf1c35,
     type: 3}
   queueSpacing: 2
+  customerMoveSpeed: 4
   customerPoolSize: 4
 --- !u!1 &410087039
 GameObject:
@@ -2783,7 +2852,7 @@ PrefabInstance:
     - target: {fileID: 4614937781064520376, guid: 13f6d0b884167e5498793a0d52e9331f,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 4.369
+      value: 4.43
       objectReference: {fileID: 0}
     - target: {fileID: 4614937781064520376, guid: 13f6d0b884167e5498793a0d52e9331f,
         type: 3}
@@ -4752,6 +4821,12 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1073465769}
   m_CullTransparentMesh: 1
+--- !u!82 &1088335920 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 2325451341547403838, guid: 147d6d262f0e6594a8461726e0309e6c,
+    type: 3}
+  m_PrefabInstance: {fileID: 122088058}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1109332208
 GameObject:
   m_ObjectHideFlags: 0
@@ -8758,6 +8833,11 @@ PrefabInstance:
       propertyPath: currentScene
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 862618963083277105, guid: aeb5464fecc701246a3a91cd26bed760,
+        type: 3}
+      propertyPath: BackgroundMusic
+      value: 
+      objectReference: {fileID: 1088335920}
     - target: {fileID: 6164756203703473571, guid: aeb5464fecc701246a3a91cd26bed760,
         type: 3}
       propertyPath: m_Name
@@ -8784,3 +8864,4 @@ SceneRoots:
   - {fileID: 1684121041}
   - {fileID: 858879973}
   - {fileID: 2017938315}
+  - {fileID: 122088058}

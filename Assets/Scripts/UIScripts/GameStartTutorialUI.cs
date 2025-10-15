@@ -39,6 +39,12 @@ public class GameStartTutorialUI : MonoBehaviour
         Visual.SetActive(true);
     }
 
+    private void OnDestroy()
+    {
+        KitchenGameManager.Instance.OnGameStateChanged -= Instance_OnGameStateChanged;
+
+    }
+
     private void SetBindingsText()
     {
         if(InputSystem.Instance != null)
