@@ -40,7 +40,6 @@ public class StoveCounterVisual : MonoBehaviour
         {
             CautionVisual.gameObject.SetActive(true);
             animator.SetBool(BURNING, true);
-            OnCautionWarning?.Invoke(this, EventArgs.Empty);
         }
         else 
         {
@@ -75,5 +74,8 @@ public class StoveCounterVisual : MonoBehaviour
             element.SetActive(false);
         }
     }
-
+    private void CautionWarning()
+    {
+        OnCautionWarning?.Invoke(this, EventArgs.Empty);
+    }
 }

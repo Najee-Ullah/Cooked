@@ -66,11 +66,8 @@ public class CuttingCounter : BaseCounter,IHasProgress
                     KitchenObject.CreateKitchenObject(target.Output, this);
                     cuttingProgress = 0;
                 }
-                else
-                {
                     OnCut?.Invoke(this, EventArgs.Empty);
                     OnCutAll?.Invoke(this, EventArgs.Empty);
-                }
             }
         }
     }

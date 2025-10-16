@@ -49,7 +49,7 @@ public class OptionsMenuUI : MonoBehaviour
 
         VolumeButton.onClick.AddListener(() => { SoundManager.Instance.AdjustVolume();UpdateVisual(); });
         ToggleMusicButton.onClick.AddListener(() => { SoundManager.Instance.ToggleMusic(); UpdateVisual(); });
-        BackToMenuButton.onClick.AddListener(() => { GoBackToMenu(); });
+        BackToMenuButton.onClick.AddListener(() => { GoBackToMenu();});
 
     }
     private void Start()

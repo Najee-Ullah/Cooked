@@ -36,6 +36,7 @@ public class PauseMenuUI : MonoBehaviour,IShow
         else
         {
             Hide();
+            OptionsMenuUI.Hide();
         }
     }
     private void QuitToMainMenu()

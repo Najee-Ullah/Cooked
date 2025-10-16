@@ -79,7 +79,7 @@ public class SoundManager : MonoBehaviour
     private void StoveCounterVisual_OnCautionWarning(object sender, System.EventArgs e)
     {
         StoveCounterVisual stoveCounterVisual = sender as StoveCounterVisual;
-        PlaySoundInArray(SFXRefsSO.warning, stoveCounterVisual.transform.position);
+        PlaySound(SFXRefsSO.warning[1], stoveCounterVisual.transform.position);
     }
 
     private void BaseCounter_onPickObject(object sender, System.EventArgs e)
