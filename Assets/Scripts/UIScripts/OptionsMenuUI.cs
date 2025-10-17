@@ -35,7 +35,6 @@ public class OptionsMenuUI : MonoBehaviour
     [SerializeField] TextMeshProUGUI Esctxt;
 
 
-
     private void Awake()
     {
         Interact.onClick.AddListener(() => { InputSystem.Instance.StartRebind(InputSystem.Binding.Interact, (string displayText) => { UpdateKeyVisual(Interacttxt,displayText); }); });
@@ -48,7 +47,7 @@ public class OptionsMenuUI : MonoBehaviour
         
 
         VolumeButton.onClick.AddListener(() => { SoundManager.Instance.AdjustVolume();UpdateVisual(); });
-        ToggleMusicButton.onClick.AddListener(() => { SoundManager.Instance.ToggleMusic(); UpdateVisual(); });
+        ToggleMusicButton.onClick.AddListener(() => { SoundManager.Instance.ToggleMusic(); UpdateVisual();});
         BackToMenuButton.onClick.AddListener(() => { GoBackToMenu();});
 
     }

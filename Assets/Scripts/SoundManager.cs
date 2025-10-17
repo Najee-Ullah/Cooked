@@ -9,7 +9,8 @@ public class SoundManager : MonoBehaviour
 
     private float volumeMultiplier = .1f;
     private const string VOLUME = "volume";
-    private bool IsBackgroundMusicEnabled = false;
+    private bool IsBackgroundMusicEnabled = true;
+    private const string MUSICSETTING = "MusicSetting";
 
     public enum CurrentScene
     {
@@ -21,8 +22,8 @@ public class SoundManager : MonoBehaviour
     {
         if(PlayerPrefs.HasKey(VOLUME)) 
           volumeMultiplier = PlayerPrefs.GetFloat(VOLUME);
-
-        ToggleMusic();
+        if(PlayerPrefs.HasKey(MUSICSETTING))
+            SetMusic(PlayerPrefs.GetInt(MUSICSETTING));
         
     }
 
@@ -143,6 +144,23 @@ public class SoundManager : MonoBehaviour
     {
         return (int)(volumeMultiplier * 10);
     }
+    public void SetMusic(int music)
+    {
+       if(music ==1)
+        {
+            if(!IsMusicEnabled())
+            {
+                ToggleMusic();
+            }
+        }
+        else
+        {
+            if (IsMusicEnabled())
+            {
+                ToggleMusic();
+            }
+        }
+    }
     public void ToggleMusic()
     {
         if (BackgroundMusic != null)
@@ -151,12 +169,15 @@ public class SoundManager : MonoBehaviour
             {
                 IsBackgroundMusicEnabled = true;
                 BackgroundMusic.volume = 1 * volumeMultiplier;
+                SetMusic(1);
+                PlayerPrefs.SetInt(MUSICSETTING,1);
             }
             else
             {
                 IsBackgroundMusicEnabled = false;
                 BackgroundMusic.volume = 0 * volumeMultiplier;
-
+                SetMusic(0);
+                PlayerPrefs.SetInt(MUSICSETTING, 0);
             }
         }
     }
