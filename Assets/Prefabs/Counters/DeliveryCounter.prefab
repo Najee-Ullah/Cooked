@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 7500688578306149232}
   - component: {fileID: 6535131289142305952}
   - component: {fileID: 4610488626974305662}
-  - component: {fileID: 4769918372531007678}
   m_Layer: 3
   m_Name: Visual
   m_TagString: Untagged
@@ -59,6 +58,9 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -84,28 +86,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &4769918372531007678
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8310335858814873790}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1001 &3995692416870380379
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -141,7 +121,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3297719422930810476, guid: be1e77e8d4e81bf4292e5b46dc090583,
         type: 3}
-      propertyPath: m_Materials.Array.data[0]
+      propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: 1a0afd856a35421469b28b916116fd9c, type: 2}
     - target: {fileID: 4589716710238282922, guid: be1e77e8d4e81bf4292e5b46dc090583,
@@ -365,7 +345,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5421574228124159825, guid: cab3d6ce1e4a0a94d996a145c8b3019d,
         type: 3}
-      propertyPath: SelectedVisuals.Array.data[0]
+      propertyPath: 'SelectedVisuals.Array.data[0]'
       value: 
       objectReference: {fileID: 4558925640230096498}
     m_RemovedComponents: []
