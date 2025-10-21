@@ -30,6 +30,7 @@ public class DeliveryCounter : BaseCounter
             List<KitchenObjectSO> kSOList = plateKitchenObject.GetKitchenObjectSOList();
             List<RecipeSO> currentOrderList = DeliveryManager.Instance.GetCurrentOrderList();
             bool found = false;
+            if(currentOrderList.Count > 0) 
             if (kSOList.Count == currentOrderList[0].kitchenObjectSOs.Count)
             {
                 bool correctOrder = true;
