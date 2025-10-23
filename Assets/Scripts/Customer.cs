@@ -1,4 +1,5 @@
-﻿using System;
+﻿using JetBrains.Annotations;
+using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
@@ -8,9 +9,12 @@ public class Customer : MonoBehaviour
     [Header("Settings")]
     [SerializeField] private float movementSpeed = 2f;
     [SerializeField] Image recipeImage;
+    [SerializeField] private Animator visualAnimator;
     private Vector3 targetPos = Vector3.zero;
     private bool shouldDestroy = false;
     //RecipeSO desiredRecipe = null;
+
+    private const string ISWALKING = "IsWalking";
 
     public event Action<Customer> OnCustomerDisable;
 
@@ -25,6 +29,7 @@ public class Customer : MonoBehaviour
         //keep moving until reached destination
         if (!HasReachedDestination())
         {
+            visualAnimator.SetBool(ISWALKING, true);
             Vector3 moveDir = targetPos - transform.position;
             moveDir.Normalize();
             transform.position = Vector3.MoveTowards(transform.position,targetPos,movementSpeed * Time.deltaTime);
@@ -39,6 +44,10 @@ public class Customer : MonoBehaviour
         {
             OnCustomerDisable?.Invoke(this);
             shouldDestroy = false;
+        }
+        if(HasReachedDestination())
+        {
+            visualAnimator.SetBool(ISWALKING, false);
         }
     }
 
