@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0292be2d2897f6149b91e66f93ae61e1, type: 3}
+  m_Name: CrispMeatWithCheese
+  m_EditorClassIdentifier: 
+  kitchenObjectSOs:
+  - {fileID: 11400000, guid: 0fd27ac6eb1515f4b9a6777f0a31646e, type: 2}
+  - {fileID: 11400000, guid: 37c36794c4241f64bbdaae6e85d14685, type: 2}
+  RecipeName: CrispyMeatnCheese
+  RecipeIcon: {fileID: 21300000, guid: d749caa255d5f5d47bd793a0aa05887c, type: 3}
