@@ -20,9 +20,13 @@ public class SoundManager : MonoBehaviour
     [SerializeField] CurrentScene currentScene;
     private void Awake()
     {
-        if(PlayerPrefs.HasKey(VOLUME)) 
-          volumeMultiplier = PlayerPrefs.GetFloat(VOLUME);
-        if(PlayerPrefs.HasKey(MUSICSETTING))
+        if (PlayerPrefs.HasKey(VOLUME))
+        {
+            volumeMultiplier = PlayerPrefs.GetFloat(VOLUME);
+            if(BackgroundMusic!=null)
+                 BackgroundMusic.volume = 1 * volumeMultiplier;
+        }
+        if (PlayerPrefs.HasKey(MUSICSETTING))
             SetMusic(PlayerPrefs.GetInt(MUSICSETTING));
         
     }
@@ -139,6 +143,8 @@ public class SoundManager : MonoBehaviour
         }
         PlayerPrefs.SetFloat(VOLUME, volumeMultiplier);
         PlayerPrefs.Save();
+        if (BackgroundMusic != null)
+            BackgroundMusic.volume = 1 * volumeMultiplier;
     }
     public int GetVolume()
     {
